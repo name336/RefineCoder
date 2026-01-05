@@ -1,0 +1,109 @@
+# Example configuration file for CodeGen's requirement-aware workflow.
+# Copy this file to agent_config.yaml and replace placeholder API keys.
+#
+# Supported LLM types:
+#   - openai: OpenAI GPT models
+#   - claude: Anthropic Claude models
+#   - gemini: Google Gemini models
+#   - deepseek: DeepSeek models
+#   - qwen: Alibaba Qwen models
+#   - llama: Llama models
+#   - huggingface: Local HuggingFace models
+
+llm:
+  type: "claude"
+  api_key: "YOUR-ANTHROPIC-API-KEY"
+  model: "claude-3-5-sonnet-20241022"
+  temperature: 0.1
+  max_output_tokens: 4096
+  max_input_tokens: 100000
+  # api_base: "https://api.anthropic.com/v1"  # Optional: custom API endpoint
+
+# ============================================================================
+# Example configurations for different providers:
+# ============================================================================
+# DeepSeek:
+#   type: "deepseek"
+#   api_key: "YOUR-API-KEY"
+#   model: "deepseek-chat"
+#   api_base: "https://api.deepseek.com/v1"
+#
+# Qwen:
+#   type: "qwen"
+#   api_key: "YOUR-API-KEY"
+#   model: "qwen-turbo"
+#   api_base: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+#
+# Llama:
+#   type: "llama"
+#   api_key: "YOUR-API-KEY"
+#   model: "llama-3.1-70b"
+#   api_base: "https://api.siliconflow.cn/v1"
+#
+# Gemini:
+#   type: "gemini"
+#   api_key: "YOUR-API-KEY"
+#   model: "gemini-1.5-flash"
+#   api_base: "https://generativelanguage.googleapis.com/v1beta"
+# ============================================================================
+
+agent_llms:
+  analyzer:
+    type: "claude"
+    api_key: "YOUR-ANTHROPIC-API-KEY"
+    model: "claude-3-5-haiku-20241022"
+    temperature: 0.0
+    max_output_tokens: 2048
+  corrector:
+    type: "claude"
+    api_key: "YOUR-ANTHROPIC-API-KEY"
+    model: "claude-3-5-sonnet-20241022"
+    temperature: 0.2
+    max_output_tokens: 2048
+  writer:
+    type: "claude"
+    api_key: "YOUR-ANTHROPIC-API-KEY"
+    model: "claude-3-5-sonnet-20241022"
+    temperature: 0.3
+    max_output_tokens: 4096
+
+rate_limits:
+  claude:
+    requests_per_minute: 50
+    input_tokens_per_minute: 20000
+    output_tokens_per_minute: 8000
+    input_token_price_per_million: 3.0
+    output_token_price_per_million: 15.0
+  openai:
+    requests_per_minute: 500
+    input_tokens_per_minute: 200000
+    output_tokens_per_minute: 100000
+    input_token_price_per_million: 0.15
+    output_token_price_per_million: 0.60
+  gemini:
+    requests_per_minute: 60
+    input_tokens_per_minute: 30000
+    output_tokens_per_minute: 10000
+    input_token_price_per_million: 0.125
+    output_token_price_per_million: 0.375
+  deepseek:
+    requests_per_minute: 60
+    input_tokens_per_minute: 100000
+    output_tokens_per_minute: 50000
+    input_token_price_per_million: 0.14
+    output_token_price_per_million: 0.28
+  qwen:
+    requests_per_minute: 60
+    input_tokens_per_minute: 100000
+    output_tokens_per_minute: 50000
+    input_token_price_per_million: 0.25
+    output_token_price_per_million: 0.50
+  llama:
+    requests_per_minute: 60
+    input_tokens_per_minute: 100000
+    output_tokens_per_minute: 50000
+    input_token_price_per_million: 0.20
+    output_token_price_per_million: 0.40
+
+requirement_flow:
+  max_iterations: 5

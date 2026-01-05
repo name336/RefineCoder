@@ -1,0 +1,7 @@
+config/agent_config.yaml
+tool/add_header.sh
+
+# Temporary evaluation files
+eval_scripts/temp_files/
+eval_scripts/demo*.py
+eval_scripts/call_demo*.py
